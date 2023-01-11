@@ -4,6 +4,9 @@
         android:label="memelord"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        android:name="com.yalantis.ucrop.UCropActivity"
+        android:screenOrientation="portrait"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

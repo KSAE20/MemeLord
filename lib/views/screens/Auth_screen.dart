@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   bool isLogin = true;
   late Animation<double> containerSize;
   AnimationController? animationController;
-  Duration animationDuration = Duration(milliseconds: 270);
+  Duration animationDuration = const Duration(milliseconds: 270);
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
     final TextEditingController usernameController = TextEditingController();
@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                   height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Color.fromARGB(255, 0, 255, 242),
+                    color: const Color.fromARGB(255, 0, 255, 242),
                   ),
                 )
               ),

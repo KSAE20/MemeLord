@@ -5,6 +5,8 @@ import 'package:memelord/controllers/upload_video_controller.dart';
 import 'package:memelord/views/screens/components/text_input_field_widget.dart';
 import 'package:video_player/video_player.dart';
 
+import '../widgets/dialog.dart';
+
 class ConfirmScreen extends StatefulWidget {
   final File videoFile;
   final String videoPath;
@@ -20,9 +22,7 @@ class ConfirmScreen extends StatefulWidget {
 
 class _ConfirmScreenState extends State<ConfirmScreen> {
   late VideoPlayerController controller;
- // TextEditingController _songController = TextEditingController();
-  TextEditingController _videocaptionController = TextEditingController();
-
+  final TextEditingController _videocaptionController = TextEditingController();
  UploadVideoController uploadVideoController =Get.put(UploadVideoController());
 
   @override
@@ -83,7 +83,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                     child: TextField(
                       controller: _videocaptionController,
                      decoration: const InputDecoration(
-                            hintText: "Write a caption...",
+                            hintText: ".Write a caption...",
                             border: OutlineInputBorder()  ),
                         maxLines: 8,
                     ),
@@ -92,9 +92,14 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                     height: 10,
                   ),
                   ElevatedButton(
-                      onPressed: () => uploadVideoController.uploadVideo(
+                      onPressed: ()  async {
+                        DialogHelper.showLoading();
+                       await uploadVideoController.uploadVideo(
                           _videocaptionController.text,
-                          widget.videoPath),
+                          widget.videoPath);
+                        DialogHelper.hideLoading();
+                       },
+
                       child: const Text(
                         'Post',
                         style: TextStyle(

@@ -5,14 +5,14 @@ class Video {
   String uid;
   String id;
   List likes;
-/*   List love;
-  List haha;
-  List sad;
-  List angry;
-  List dislikes;   */
+  List? love;
+  List? haha;
+  List? sad;
+  List? angry;
+  List? dislikes;
   int commentCount;
   int shareCount;
-  //final datePublished;
+  String? datePublished;
   //String songName;
   String caption;
   String videoUrl;
@@ -24,15 +24,15 @@ class Video {
     required this.uid,
     required this.id,
     required this.likes,
-   /*  required this.love,
-    required this.haha,
-    required this.sad,
-    required this.angry,
-    required this.dislikes, */
-    //required this.datePublished,
+    this.love,
+    this.haha,
+    this.sad,
+    this.angry,
+    this.dislikes,
+    this.datePublished,
     required this.commentCount,
     required this.shareCount,
-   // required this.songName,
+    // required this.songName,
     required this.caption,
     required this.videoUrl,
     required this.profilePhoto,
@@ -45,15 +45,15 @@ class Video {
         "profilePhoto": profilePhoto,
         "id": id,
         "likes": likes,
-       /*  "love":love,
-        "haha":haha,
-        "sad":sad,
-        "angry":angry,
-        "dislikes":dislikes, */
+        "love": love,
+        "haha": haha,
+        "sad": sad,
+        "angry": angry,
+        "dislikes": dislikes,
         "commentCount": commentCount,
         "shareCount": shareCount,
-        //"datePublished": datePublished,
-       // "songName": songName,
+        "datePublished": datePublished,
+        // "songName": songName,
         "caption": caption,
         "videoUrl": videoUrl,
         "thumbnail": thumbnail,
@@ -67,12 +67,12 @@ class Video {
       uid: snapshot['uid'],
       id: snapshot['id'],
       likes: snapshot['likes'],
-/*       love: snapshot['love'],
+      love: snapshot['love'],
       haha: snapshot['haha'],
       sad: snapshot['sad'],
       angry: snapshot['angry'],
-      dislikes: snapshot['dislikes'], */
-      //datePublished: snapshot['datePublished'],
+      dislikes: snapshot['dislikes'],
+      datePublished: snapshot['datePublished'],
       commentCount: snapshot['commentCount'],
       shareCount: snapshot['shareCount'],
       //songName: snapshot['songName'],

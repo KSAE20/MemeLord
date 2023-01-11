@@ -30,12 +30,22 @@ class ProfileController extends GetxController {
     String name = userData['name'];
     String profilePhoto = userData['profilePhoto'];
     int likes = 0;
+    int love = 0;
+    int haha = 0;
+    int angry = 0;
+    int sad = 0;
+    int dislikes = 0;
     int followers = 0;
     int following = 0;
     bool isFollowing = false;
 
     for (var item in myVideos.docs) {
       likes += (item.data()['likes'] as List).length;
+      love += (item.data()['love'] as List).length;
+      haha += (item.data()['haha'] as List).length;
+      angry += (item.data()['angry'] as List).length;
+      sad += (item.data()['sad'] as List).length;
+      dislikes += (item.data()['dislikes'] as List).length;
     }
     var followerDoc = await firestore
         .collection('users')
@@ -64,10 +74,16 @@ class ProfileController extends GetxController {
       }
     });
 
+
     _user.value = {
       'followers': followers.toString(),
       'following': following.toString(),
       'isFollowing': isFollowing,
+      'love': love.toString(),
+      'haha': haha.toString(),
+      'angry': angry.toString(),
+      'sad': sad.toString(),
+      'dislikes': dislikes.toString(),
       'likes': likes.toString(),
       'profilePhoto': profilePhoto,
       'name': name,

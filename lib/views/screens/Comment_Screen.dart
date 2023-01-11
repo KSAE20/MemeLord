@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:memelord/constants.dart';
 import 'package:timeago/timeago.dart' as tago;
 
+import '../../components/utils.dart';
 import '../../controllers/Comment_controller.dart';
 
 class CommentScreen extends StatelessWidget {
@@ -131,7 +132,7 @@ class CommentScreen extends StatelessWidget {
                     'Send',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.white,
+                      color:blueColor,
                     ),
                   ),
                 ),

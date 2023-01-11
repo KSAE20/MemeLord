@@ -5,7 +5,6 @@ import 'package:memelord/constants.dart';
 import 'package:memelord/models/video.dart';
 import 'package:video_compress/video_compress.dart';
 import 'package:memelord/constants.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
@@ -23,15 +22,14 @@ class UploadVideoController extends GetxController {
     return compressedVideo!.file;
   }
 
-  Future<String> _uploadVideoToStorage(String id, String videoPath) async {
+  Future<String> _uploadVideoToStorage(
+      String id, String videoPath, String caption) async {
     Reference ref = firebasStorage.ref().child('videos').child(id);
-
     UploadTask uploadTask = ref.putFile(await _compressVideo(videoPath));
     TaskSnapshot snap = await uploadTask;
     String downloadUrl = await snap.ref.getDownloadURL();
     return downloadUrl;
   }
-
   _getThumbnail(String videoPath) async {
     final thumbnail = await VideoCompress.getFileThumbnail(videoPath);
     return thumbnail;
@@ -46,7 +44,7 @@ class UploadVideoController extends GetxController {
   }
 
   // upload video
-  uploadVideo( String caption, String videoPath) async {
+  uploadVideo(String caption, String videoPath) async {
     try {
       String uid = firebaseAuth.currentUser!.uid;
       DocumentSnapshot userDoc =
@@ -54,7 +52,8 @@ class UploadVideoController extends GetxController {
       // get id
       var allDocs = await firestore.collection('videos').get();
       int len = allDocs.docs.length;
-      String videoUrl = await _uploadVideoToStorage("Video $len", videoPath);
+      String videoUrl =
+          await _uploadVideoToStorage("Video $len", videoPath, caption);
       String thumbnail = await _uploadImageToStorage("Video $len", videoPath);
 
       Video video = Video(
@@ -62,11 +61,11 @@ class UploadVideoController extends GetxController {
         uid: uid,
         id: "Video $len",
         likes: [],
-       /*  love: [],
+        love: [],
         haha: [],
         sad: [],
         angry: [],
-        dislikes: [], */
+        dislikes: [],
         commentCount: 0,
         shareCount: 0,
         //songName: songName,
@@ -74,7 +73,7 @@ class UploadVideoController extends GetxController {
         videoUrl: videoUrl,
         profilePhoto: (userDoc.data()! as Map<String, dynamic>)['profilePhoto'],
         thumbnail: thumbnail,
-        //datePublished: DateTime.now(),
+        datePublished: DateTime.now().toString(),
       );
 
       await firestore.collection('videos').doc('Video $len').set(

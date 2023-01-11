@@ -7,7 +7,6 @@ import 'package:memelord/constants.dart';
 import 'package:memelord/models/user.dart' as model;
 import 'package:memelord/views/screens/Auth_screen.dart';
 import 'package:memelord/views/screens/Bottom_nav_bar.dart';
-import 'package:memelord/views/screens/Home_Screen.dart';
 
 class AuthController extends  GetxController {
   static AuthController instance = Get.find();

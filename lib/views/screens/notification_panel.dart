@@ -23,7 +23,7 @@ class _notification_panelState extends State<notification_panel> {
         child: Column(
           
           children: [
-                  SizedBox(height: 5),
+                 const SizedBox(height: 5),
             Ink(
               child: InkWell(
                 child: Container(
@@ -38,7 +38,7 @@ class _notification_panelState extends State<notification_panel> {
                   Stack(
                     alignment: AlignmentDirectional.bottomEnd,
                     children: [
-                        CircleAvatar(
+                     const   CircleAvatar(
                         radius: 26,
                         backgroundColor: Color.fromARGB(255, 184, 184, 184),
                      

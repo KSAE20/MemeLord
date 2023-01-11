@@ -2,9 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
+import '../../Games/chess.dart';
+import '../../Games/snake.dart';
 import '../../constants.dart';
 import '../../controllers/profile_controller.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
@@ -38,12 +42,196 @@ class _ProfileScreenState extends State<ProfileScreen> {
           }
           return Scaffold(
             appBar: AppBar(
+              centerTitle: true,
               backgroundColor: Colors.black12,
               leading: const Icon(
                 Icons.person_add_alt_1_outlined,
               ),
-              actions: const [
-                Icon(Icons.more_horiz),
+              actions: [
+                IconButton(
+                  onPressed: () async {
+                    print("DDDDddddddddd");
+                    await Alert(
+                        style: const AlertStyle(
+                            backgroundColor: Colors.transparent,
+                            isCloseButton: false,
+                            alertBorder: Border()),
+                        context: context,
+                        //   title: "Choose Your game",
+                        content: Container(
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage("assets/images/card.png"))),
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.width,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    ClipOval(
+                                      child: CachedNetworkImage(
+                                        fit: BoxFit.cover,
+                                        imageUrl:
+                                            controller.user['profilePhoto'],
+                                        height: 75,
+                                        width: 75,
+                                        placeholder: (context, url) =>
+                                            const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(
+                                          Icons.error,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 40.0,
+                                    ),
+                                   const Text(
+                                      "Name : ",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    const SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Text(
+                                      controller.user["name"],
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 40.0,
+                                    ),
+                                    const Text(
+                                      "Folllwers:",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    const SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Text(
+                                      controller.user['followers'],
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15.0,
+                                ),
+                                Row(
+                                  children: const [
+                                    SizedBox(
+                                      width: 40.0,
+                                    ),
+                                    Text(
+                                      "Most Gained Emoji",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Image(image: AssetImage("assets/images/care.png" ,) ,height: 25, width: 25,)
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15.0,
+                                ),
+                                Row(
+                                  children: const [
+                                    SizedBox(
+                                      width: 40.0,
+                                    ),
+                                    Text(
+                                      "IPP : ",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Text(
+                                      "66%",
+                                      style: TextStyle(fontSize: 18),
+                                    ),  ],
+                                ),
+                                const SizedBox(
+                                  height: 15.0,
+                                ),
+                                Row(
+                                  children: const [
+                                    SizedBox(
+                                      width: 40.0,
+                                    ),
+                                    Text(
+                                      "Badge : ",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Image(image: AssetImage("assets/images/badge.png" ,) ,height: 25, width: 25,)
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15.0,
+                                ),
+                                Row(
+                                  children: const [
+                                    SizedBox(
+                                      width: 40.0,
+                                    ),
+                                    Text(
+                                      "Permutation : ",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Image(image: AssetImage("assets/images/arrow.png" ,) ,height: 25, width: 25,)
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15.0,
+                                ),
+                                Row(
+                                  children: const [
+                                    SizedBox(
+                                      width: 40.0,
+                                    ),
+                                    Text(
+                                      "achievements : ",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Image(image: AssetImage("assets/images/badge.png" ,) ,height: 25, width: 25,)
+                                  ],
+                                ),
+                              ]),
+                        ),
+                        buttons: []).show();
+                  },
+                  icon: const Icon(Icons.more_horiz),
+                ),
               ],
               title: Text(
                 controller.user['name'],
@@ -170,7 +358,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             child: Center(
                               child: InkWell(
-                                onTap: () {
+                                onTap: () async {
                                   if (widget.uid == authController.user.uid) {
                                     authController.signOut();
                                   } else {
