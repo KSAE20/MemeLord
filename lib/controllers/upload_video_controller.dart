@@ -4,28 +4,29 @@ import 'package:get/get.dart';
 import 'package:memelord/constants.dart';
 import 'package:memelord/models/video.dart';
 import 'package:video_compress/video_compress.dart';
-import 'package:memelord/constants.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:get/get.dart';
-import 'package:memelord/constants.dart';
-import 'package:memelord/models/video.dart';
-import 'package:video_compress/video_compress.dart';
-import 'package:memelord/constants.dart';
 
 class UploadVideoController extends GetxController {
   _compressVideo(String videoPath) async {
     final compressedVideo = await VideoCompress.compressVideo(
       videoPath,
-      quality: VideoQuality.MediumQuality,
+      quality: VideoQuality.LowQuality,
+      deleteOrigin: true,
+      includeAudio: true,
     );
+    print ("ZZZZZZZZZZZZZZZZZZZZZZZZZZZz");
     return compressedVideo!.file;
   }
+
+
+
 
   Future<String> _uploadVideoToStorage(
       String id, String videoPath, String caption) async {
     Reference ref = firebasStorage.ref().child('videos').child(id);
-    UploadTask uploadTask = ref.putFile(await _compressVideo(videoPath));
+    print(_compressVideo(videoPath));
+    print("2BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+    UploadTask uploadTask =  ref.putFile(await _compressVideo(videoPath));
+    print("1BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
     TaskSnapshot snap = await uploadTask;
     String downloadUrl = await snap.ref.getDownloadURL();
     return downloadUrl;
@@ -52,9 +53,12 @@ class UploadVideoController extends GetxController {
       // get id
       var allDocs = await firestore.collection('videos').get();
       int len = allDocs.docs.length;
+      print ("AAAAAAAAAAAAAAAAAAAAAAA");
       String videoUrl =
           await _uploadVideoToStorage("Video $len", videoPath, caption);
+      print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
       String thumbnail = await _uploadImageToStorage("Video $len", videoPath);
+      print("CCCCCCCCCCCCCCCCCCCCCCCCCCCCc");
 
       Video video = Video(
         username: (userDoc.data()! as Map<String, dynamic>)['name'],
@@ -79,6 +83,7 @@ class UploadVideoController extends GetxController {
       await firestore.collection('videos').doc('Video $len').set(
             video.toJson(),
           );
+      print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
       Get.back();
     } catch (e) {
       Get.snackbar(

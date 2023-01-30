@@ -7,7 +7,6 @@ import 'package:memelord/views/screens/Bottom_nav_bar.dart';
 import 'package:memelord/views/screens/Home_Screen.dart';
 import 'package:memelord/views/screens/Splash_screen.dart';
 import 'package:memelord/views/screens/Upload_screen.dart';
-
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 await Firebase.initializeApp().then((value){

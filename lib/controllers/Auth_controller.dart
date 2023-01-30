@@ -12,9 +12,10 @@ class AuthController extends  GetxController {
   static AuthController instance = Get.find();
 
   late Rx<User?> _user;
-  late Rx<File?> _pickedImage;
-
-  File? get profilePhoto => _pickedImage.value;
+  //late Rx<File?> _pickedImage = File('') as Rx<File?>;
+  File  pickedImage=  File('');
+  //File? get profilePhoto => _pickedImage.value;
+ File? get profilePhoto =>  pickedImage;
      User get user => _user.value!;
 
   @override
@@ -51,7 +52,7 @@ ppaaabbloooo*/
       Get.snackbar('Profile Picture',
           'You have successfully selected your profile picture!');
     }
-    _pickedImage = Rx<File?>(File(pickedImage!.path));
+    // pickedImage =  (File(pickedImage!.path))     ;
   }
 
 

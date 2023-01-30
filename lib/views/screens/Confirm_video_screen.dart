@@ -6,6 +6,7 @@ import 'package:memelord/views/screens/components/text_input_field_widget.dart';
 import 'package:video_player/video_player.dart';
 
 import '../widgets/dialog.dart';
+import 'Home_Screen.dart';
 
 class ConfirmScreen extends StatefulWidget {
   final File videoFile;

@@ -100,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     const SizedBox(
                                       width: 40.0,
                                     ),
-                                   const Text(
+                                    const Text(
                                       "Name : ",
                                       style: TextStyle(fontSize: 18),
                                     ),
@@ -149,7 +149,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     SizedBox(
                                       width: 10.0,
                                     ),
-                                    Image(image: AssetImage("assets/images/care.png" ,) ,height: 25, width: 25,)
+                                    Image(
+                                      image: AssetImage(
+                                        "assets/images/care.png",
+                                      ),
+                                      height: 25,
+                                      width: 25,
+                                    )
                                   ],
                                 ),
                                 const SizedBox(
@@ -170,7 +176,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Text(
                                       "66%",
                                       style: TextStyle(fontSize: 18),
-                                    ),  ],
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(
                                   height: 15.0,
@@ -187,7 +194,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     SizedBox(
                                       width: 10.0,
                                     ),
-                                    Image(image: AssetImage("assets/images/badge.png" ,) ,height: 25, width: 25,)
+                                    Image(
+                                      image: AssetImage(
+                                        "assets/images/badge.png",
+                                      ),
+                                      height: 25,
+                                      width: 25,
+                                    )
                                   ],
                                 ),
                                 const SizedBox(
@@ -205,7 +218,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     SizedBox(
                                       width: 10.0,
                                     ),
-                                    Image(image: AssetImage("assets/images/arrow.png" ,) ,height: 25, width: 25,)
+                                    Image(
+                                      image: AssetImage(
+                                        "assets/images/arrow.png",
+                                      ),
+                                      height: 25,
+                                      width: 25,
+                                    )
                                   ],
                                 ),
                                 const SizedBox(
@@ -223,7 +242,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     SizedBox(
                                       width: 10.0,
                                     ),
-                                    Image(image: AssetImage("assets/images/badge.png" ,) ,height: 25, width: 25,)
+                                    Image(
+                                      image: AssetImage(
+                                        "assets/images/badge.png",
+                                      ),
+                                      height: 25,
+                                      width: 25,
+                                    )
                                   ],
                                 ),
                               ]),
@@ -270,6 +295,227 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           const SizedBox(
                             height: 15,
                           ),
+                          InkWell(
+                            onTap: () async {
+                              await Alert(
+                                  style: const AlertStyle(
+                                      backgroundColor: Colors.transparent,
+                                      isCloseButton: false,
+                                      alertBorder: Border()),
+                                  context: context,
+                                  //   title: "Choose Your game",
+                                  content: Container(
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/images/card.png"))),
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.width,
+                                    child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            children: [
+                                              ClipOval(
+                                                child: CachedNetworkImage(
+                                                  fit: BoxFit.cover,
+                                                  imageUrl: controller
+                                                      .user['profilePhoto'],
+                                                  height: 75,
+                                                  width: 75,
+                                                  placeholder: (context, url) =>
+                                                      const CircularProgressIndicator(),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          const Icon(
+                                                    Icons.error,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            children: [
+                                              const SizedBox(
+                                                width: 40.0,
+                                              ),
+                                              const Text(
+                                                "Name : ",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                              const SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Text(
+                                                controller.user["name"],
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 15,
+                                          ),
+                                          Row(
+                                            children: [
+                                              const SizedBox(
+                                                width: 40.0,
+                                              ),
+                                              const Text(
+                                                "Folllwers:",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                              const SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Text(
+                                                controller.user['followers'],
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 15.0,
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 40.0,
+                                              ),
+                                              Text(
+                                                "Most Gained Emoji",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                              SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Image(
+                                                image: AssetImage(
+                                                  "assets/images/care.png",
+                                                ),
+                                                height: 25,
+                                                width: 25,
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 15.0,
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 40.0,
+                                              ),
+                                              Text(
+                                                "IPP : ",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                              SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Text(
+                                                "66%",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 15.0,
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 40.0,
+                                              ),
+                                              Text(
+                                                "Badge : ",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                              SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Image(
+                                                image: AssetImage(
+                                                  "assets/images/badge.png",
+                                                ),
+                                                height: 25,
+                                                width: 25,
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 15.0,
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 40.0,
+                                              ),
+                                              Text(
+                                                "Permutation : ",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                              SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Image(
+                                                image: AssetImage(
+                                                  "assets/images/arrow.png",
+                                                ),
+                                                height: 25,
+                                                width: 25,
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 15.0,
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 40.0,
+                                              ),
+                                              Text(
+                                                "achievements : ",
+                                                style: TextStyle(fontSize: 18),
+                                              ),
+                                              SizedBox(
+                                                width: 10.0,
+                                              ),
+                                              Image(
+                                                image: AssetImage(
+                                                  "assets/images/badge.png",
+                                                ),
+                                                height: 25,
+                                                width: 25,
+                                              )
+                                            ],
+                                          ),
+                                        ]),
+                                  ),
+                                  buttons: []).show();
+                            },
+                            child: const Text(
+                              "Profile info",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -360,7 +606,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: InkWell(
                                 onTap: () async {
                                   if (widget.uid == authController.user.uid) {
-                                    authController.signOut();
+                                    await Alert(
+                                        context: context,
+                                        title: "Are you shower signOut ? ",
+                                        type: AlertType.warning,
+                                        buttons: [
+                                          DialogButton(
+                                            child: const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 12.0),
+                                              child: Text(
+                                                "No",
+                                                style: TextStyle(
+                                                    color: Color.fromRGBO(
+                                                        0, 179, 134, 1.0),
+                                                    fontSize: 20),
+                                              ),
+                                            ),
+                                            onPressed: () => Get.back(),
+                                            color: Colors.transparent,
+                                            radius: BorderRadius.circular(0.0),
+                                          ),
+                                          DialogButton(
+                                            child: const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 12.0),
+                                              child: Text(
+                                                "Yes",
+                                                style: TextStyle(
+                                                    color: Colors.red,
+                                                    fontSize: 20),
+                                              ),
+                                            ),
+                                            onPressed: () async {
+                                              Get.back();
+                                              authController.signOut();
+                                            },
+                                            color: Colors.transparent,
+                                            radius: BorderRadius.circular(0.0),
+                                          ),
+                                        ]).show();
                                   } else {
                                     controller.followUser();
                                   }

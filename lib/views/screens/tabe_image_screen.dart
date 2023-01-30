@@ -10,13 +10,22 @@ import 'package:memelord/views/screens/video_screen_tab.dart';
 import '../../constants.dart';
 import '../../models/image.dart';
 
-class TapImageScreen extends StatelessWidget {
+class TapImageScreen extends StatefulWidget {
   const TapImageScreen({Key? key}) : super(key: key);
 
   @override
+  State<TapImageScreen> createState() => _TapImageScreenState();
+}
+
+class _TapImageScreenState extends State<TapImageScreen> {
+  ImageController imageController = Get.put(ImageController());
+  PageController pageController =  PageController(initialPage: 0, viewportFraction: 1);
+  int count = 0;
+  int countReact = 0;
+
+  @override
   Widget build(BuildContext context) {
-    ImageController imageController = Get.put(ImageController());
-    PageController pageController =  PageController(initialPage: 0, viewportFraction: 1);
+
     return Scaffold(
       body: Obx(() {
         return PageView.builder(
@@ -25,23 +34,24 @@ class TapImageScreen extends StatelessWidget {
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             final data = imageController.imageList[index];
+            countReact =   data.sad!.length +  data.love!.length +  data.haha!.length  + data.angry!.length + data.likes.length  +  data.dislikes!.length ;
+            count = int.parse( data.angry.toString().length.toString()) +
+                int.parse( data.sad.toString().length.toString()) +
+                int.parse( data.haha.toString().length.toString()) +
+                int.parse( data.love.toString().length.toString());
+
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(
-                  height: 118,
+                  height: 135,
                 ),
-                const AspectRatio(
-                  aspectRatio: 20 / 5,
-                  child: Image(
-                    image: AssetImage('assets/images/talabat.png'),
-                  ),
-                ),
+
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0, vertical: 8.0),
+                      horizontal: 8.0 ),
                   child: PostHeader(
                       image: data.profilePhoto,
                       name: data.username,
@@ -49,6 +59,12 @@ class TapImageScreen extends StatelessWidget {
                           ? "No time set"
                           : getTimeDifferenceFromNow(
                               data.datePublished.toString())),
+                ),
+                const AspectRatio(
+                  aspectRatio: 20 / 5,
+                  child: Image(
+                    image: AssetImage('assets/images/talabat.png'),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -75,37 +91,94 @@ class TapImageScreen extends StatelessWidget {
 
                   ),
                 ) ,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 3),
-                      child: Text(
-                        "${data.commentCount.toString()} Comments",
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14.0,
-                        ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0 , vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Image(
+                            image: AssetImage(
+                              "assets/images/haha.png",
+                            ),
+                            height: 12,
+                            width: 12,
+                          ),
+                          const Image(
+                            image: AssetImage(
+                              "assets/images/sad.png",
+                            ),
+                            height: 12,
+                            width: 12,
+                          ),
+                          Text(countReact.toString()),
+                        ],
                       ),
-                    ),
-                  ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(count.toString() ,  style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 14.0,
+                              ),),
+                              Text(" Viewer" ,     style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 14.0,
+                              ),),
+                            ],
+                          ),
+                          const SizedBox(width: 10.00,),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 3),
+                            child: Text(
+                              "${data.commentCount.toString()} Comments",
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 14.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                   PostStats(
                     disLikeButton:() async {
+                      await   pageController.nextPage(
+                          duration: const Duration(milliseconds: 1000),
+                          curve: Curves.easeIn);
                       await imageController.disLikeVideo(data.id);
+
                     } ,
                       angry: () async {
+                        await   pageController.nextPage(
+                            duration: const Duration(milliseconds: 1000),
+                            curve: Curves.easeIn);
                         await imageController.angryVideo(data.id);
                       },
                       haha: ()async{
+                        await   pageController.nextPage(
+                            duration: const Duration(milliseconds: 1000),
+                            curve: Curves.easeIn);
                         await imageController.hahaVideo(data.id);
                       },
                       love: ()async{
-
+                        await   pageController.nextPage(
+                            duration: const Duration(milliseconds: 1000),
+                            curve: Curves.easeIn);
                         await imageController.loveVideo(data.id);
                       },
                       sad: ()async{
+                        await   pageController.nextPage(
+                            duration: const Duration(milliseconds: 1000),
+                            curve: Curves.easeIn);
                         await imageController.sadVideo(data.id);
                       },
 
@@ -163,8 +236,8 @@ class PostStats extends StatelessWidget {
                 onTap: likeButton,
                 child: Container(
                   color: data.likes.contains(authController.user.uid)
-                      ? Colors.green
-                      : Colors.green.shade100,
+                      ?      Colors.green
+                      :  const Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(
@@ -179,7 +252,8 @@ class PostStats extends StatelessWidget {
                 onTap: haha,
                 child: Container(
                   color:  data.haha!.contains(authController.user.uid)
-                      ? blueColor : Color(0xfff0fff5),
+                      ?      Colors.green
+                      :  const Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Image(
@@ -198,7 +272,8 @@ class PostStats extends StatelessWidget {
                 onTap: sad,
                 child: Container(
                   color:  data.sad!.contains(authController.user.uid)
-                      ? blueColor : Color(0xfff0fff5),
+                      ?      Colors.green
+                      :  const Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Image(
@@ -217,7 +292,8 @@ class PostStats extends StatelessWidget {
                 onTap: love,
                 child: Container(
                   color:  data.love!.contains(authController.user.uid)
-                      ? blueColor : Color(0xfff0fff5),
+                      ?      Colors.green
+                      :  const Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Image(
@@ -236,7 +312,8 @@ class PostStats extends StatelessWidget {
                 onTap: angry,
                 child: Container(
                   color:  data.angry!.contains(authController.user.uid)
-                      ? blueColor : Color(0xfff0fff5),
+                      ?      Colors.green
+                      :  const Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Image(
@@ -320,19 +397,26 @@ class  PostButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Material(
-        color: Colors.white,
-        child: InkWell(
-          onTap: onTap,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            height: 25.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                icon,
-                Text(label, style: labelStyle),
-              ],
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey.shade600)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: Material(
+            child: InkWell(
+              onTap: onTap,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                height: 25.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    icon,
+                    Text(label, style: labelStyle),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

@@ -235,9 +235,9 @@ class PostStats extends StatelessWidget {
               child: InkWell(
                 onTap: likeButton,
                 child: Container(
-                  color: ( data.likes.contains(authController.user.uid) && ( videoController.isLike.value == true ))
+                  color: ( data.likes.contains(authController.user.uid)  )
                       ? Colors.green
-                      :  Color(0xfff0fff5),
+                      :  const Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(
@@ -251,7 +251,7 @@ class PostStats extends StatelessWidget {
               child: InkWell(
                 onTap: hahaButton,
                 child: Container(
-                  color: data.haha!.contains(authController.user.uid)  && videoController.isHaha.value
+                  color: data.haha!.contains(authController.user.uid)
                       ? Colors.green : Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
@@ -268,9 +268,9 @@ class PostStats extends StatelessWidget {
             ),
             Expanded(
               child: InkWell(
-                onTap: () {},
+                onTap: sadButton,
                 child: Container(
-                  color: data.sad!.contains(authController.user.uid) && videoController.isSad.value
+                  color: data.sad!.contains(authController.user.uid)
                       ? Colors.green : Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
@@ -289,7 +289,7 @@ class PostStats extends StatelessWidget {
               child: InkWell(
                 onTap: loveButton,
                 child: Container(
-                  color: data.love!.contains(authController.user.uid) && videoController.isLove.value
+                  color: data.love!.contains(authController.user.uid)
                       ? Colors.green : Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
@@ -308,7 +308,7 @@ class PostStats extends StatelessWidget {
               child: InkWell(
                 onTap: angryButton,
                 child: Container(
-                  color: data.angry!.contains(authController.user.uid) && videoController.isAngry.value ? Colors.green : Color(0xfff0fff5),
+                  color: data.angry!.contains(authController.user.uid)  ? Colors.green : Color(0xfff0fff5),
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Image(
@@ -326,7 +326,7 @@ class PostStats extends StatelessWidget {
               child: InkWell(
                 onTap: disLikeButton,
                 child: Container(
-                  color : data.dislikes!.contains(authController.user.uid) && videoController.isDisLike.value
+                  color : data.dislikes!.contains(authController.user.uid)
                       ? Colors.red : Colors.red.shade100,
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),

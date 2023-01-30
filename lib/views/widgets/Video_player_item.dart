@@ -108,7 +108,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                                 },
                                 child: Column(
                                   children: const [
-                                    const SizedBox(height: 24.0,) ,
+                                      SizedBox(height: 24.0,) ,
                                     Image(
                                       image:
                                       AssetImage("assets/images/snak.jpg" ,),
@@ -116,7 +116,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                                       height: 75,
 
                                     ),
-                                    const SizedBox(height: 12.0,) ,
+                                      SizedBox(height: 12.0,) ,
                                     Text(
                                       "1 Player",
                                       style: TextStyle(fontSize: 14, color: Colors.grey),
@@ -132,14 +132,14 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                                 },
                                 child: Column(
                                   children: const [
-                                    const SizedBox(height: 24.0,) ,
+                                      SizedBox(height: 24.0,) ,
                                     Image(
                                       image:
                                       AssetImage("assets/images/chees.jpg"),
                                       width: 75,
                                       height: 75,
                                     ),
-                                    const SizedBox(height: 12.0,) ,
+                                      SizedBox(height: 12.0,) ,
                                     Text(
                                       "2 Player",
                                       style: TextStyle(fontSize: 14, color: Colors.grey),
@@ -151,36 +151,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                           ],
                         ),
                         buttons: [
-                          // DialogButton(
-                          //   child: const Padding(
-                          //     padding:
-                          //         EdgeInsets.symmetric(horizontal: 12.0),
-                          //     child: Text(
-                          //       "Continue",
-                          //       style: TextStyle(
-                          //           color:
-                          //               Color.fromRGBO(0, 179, 134, 1.0),
-                          //           fontSize: 20),
-                          //     ),
-                          //   ),
-                          //   onPressed: () => Navigator.pop(context),
-                          //   color: Colors.transparent,
-                          //   radius: BorderRadius.circular(0.0),
-                          // ),
-                          // DialogButton(
-                          //   child: const Padding(
-                          //     padding:
-                          //         EdgeInsets.symmetric(horizontal: 12.0),
-                          //     child: Text(
-                          //       "Games",
-                          //       style: TextStyle(
-                          //           color: Colors.red, fontSize: 20),
-                          //     ),
-                          //   ),
-                          //   onPressed: () => Navigator.pop(context),
-                          //   color: Colors.transparent,
-                          //   radius: BorderRadius.circular(0.0),
-                          // ),
+
                         ]).show();
                   },
                   color: Colors.transparent,
@@ -219,7 +190,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
         int.parse(widget.data.love.toString().length.toString());
 
 
- //   checkInternet();
+
 
   }
 
@@ -311,24 +282,14 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
               await  widget.pageController.nextPage(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeIn);
-                videoController.isDisLike.value = true ;
-                videoController.isLike.value = false ;
-                videoController.isLove .value = false ;
-                videoController.isAngry.value = false ;
-                videoController.isSad.value = false ;
-                videoController.isHaha.value = false ;
+
                 await videoController.disLikeVideo(widget.data.id);
             },
             hahaButton: () async {
               await  widget.pageController.nextPage(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeIn);
-              videoController.isHaha.value = true ;
-              videoController.isDisLike.value = false ;
-              videoController.isLike.value = false ;
-              videoController.isLove .value = false ;
-              videoController.isAngry.value = false ;
-              videoController.isSad.value = false ;
+
               await videoController.hahaVideo(widget.data.id);
 
             },
@@ -336,12 +297,6 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
               await  widget.pageController.nextPage(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeIn);
-              videoController.isSad.value = true ;
-              videoController.isDisLike.value = false ;
-              videoController.isLike.value = false ;
-              videoController.isLove .value = false ;
-              videoController.isAngry.value = false ;
-              videoController.isHaha.value = false ;
               await videoController.sadVideo(widget.data.id);
 
             },
@@ -349,12 +304,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
               await  widget.pageController.nextPage(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeIn);
-              videoController.isAngry.value = true ;
-              videoController.isDisLike.value = false ;
-              videoController.isLike.value = false ;
-              videoController.isLove .value = false ;
-              videoController.isSad.value = false ;
-              videoController.isHaha.value = false ;
+
               await videoController.angryVideo(widget.data.id);
 
             },
@@ -367,12 +317,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
               await  widget.pageController.nextPage(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeIn);
-              videoController.isLike.value = true ;
-              videoController.isDisLike.value = false ;
-              videoController.isLove .value = false ;
-              videoController.isAngry.value = false ;
-              videoController.isSad.value = false ;
-              videoController.isHaha.value = false ;
+
               bool isConnected =
                   await InternetConnectionChecker().hasConnection;
               if (isConnected == false)
@@ -516,7 +461,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
               }
               else {
 
-                await videoController.likeVideo(widget.data.id);
+                  await videoController.likeVideo(widget.data.id);
               }
 
 
@@ -526,12 +471,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
               await   widget.pageController.nextPage(
                   duration: const Duration(milliseconds: 1000),
                   curve: Curves.easeIn);
-              videoController.isLove .value = true ;
-              videoController.isDisLike.value = false ;
-              videoController.isLike.value = false ;
-              videoController.isAngry.value = false ;
-              videoController.isSad.value = false ;
-              videoController.isHaha.value = false ;
+
 
               await videoController.loveVideo(widget.data.id);
 

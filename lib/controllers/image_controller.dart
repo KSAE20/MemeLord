@@ -89,10 +89,20 @@ class ImageController extends GetxController
     if ((doc.data()! as dynamic)['likes'].contains(uid)) {
       await firestore.collection('images').doc(id).update({
         'likes': FieldValue.arrayRemove([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     } else {
       await firestore.collection('images').doc(id).update({
         'likes': FieldValue.arrayUnion([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     }
   }
@@ -102,10 +112,20 @@ class ImageController extends GetxController
     if ((doc.data()! as dynamic)['dislikes'].contains(uid)) {
       await firestore.collection('images').doc(id).update({
         'dislikes': FieldValue.arrayRemove([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
       });
     } else {
       await firestore.collection('images').doc(id).update({
         'dislikes': FieldValue.arrayUnion([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
       });
     }
   }
@@ -115,10 +135,20 @@ class ImageController extends GetxController
     if ((doc.data()! as dynamic)['love'].contains(uid)) {
       await firestore.collection('images').doc(id).update({
         'love': FieldValue.arrayRemove([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     } else {
       await firestore.collection('images').doc(id).update({
         'love': FieldValue.arrayUnion([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     }
   }
@@ -128,10 +158,20 @@ class ImageController extends GetxController
     if ((doc.data()! as dynamic)['angry'].contains(uid)) {
       await firestore.collection('images').doc(id).update({
         'angry': FieldValue.arrayRemove([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     } else {
       await firestore.collection('images').doc(id).update({
         'angry': FieldValue.arrayUnion([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     }
   }
@@ -141,10 +181,20 @@ class ImageController extends GetxController
     if ((doc.data()! as dynamic)['haha'].contains(uid)) {
       await firestore.collection('images').doc(id).update({
         'haha': FieldValue.arrayRemove([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     } else {
       await firestore.collection('images').doc(id).update({
         'haha': FieldValue.arrayUnion([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'sad': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     }
   }
@@ -154,10 +204,20 @@ class ImageController extends GetxController
     if ((doc.data()! as dynamic)['sad'].contains(uid)) {
       await firestore.collection('images').doc(id).update({
         'sad': FieldValue.arrayRemove([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     } else {
       await firestore.collection('images').doc(id).update({
         'sad': FieldValue.arrayUnion([uid]),
+        'likes': FieldValue.arrayRemove([uid]),
+        'love': FieldValue.arrayRemove([uid]),
+        'haha': FieldValue.arrayRemove([uid]),
+        'angry': FieldValue.arrayRemove([uid]),
+        'dislikes': FieldValue.arrayRemove([uid]),
       });
     }
   }
