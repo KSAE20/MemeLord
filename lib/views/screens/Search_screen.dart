@@ -90,7 +90,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
           /// APPBAR
           body: searchController.searchedUsers.isEmpty &&
-                  searchTextController.text != "انتحار"
+                  searchTextController.text != "انتحار" ||    searchTextController.text != "معاناة" ||    searchTextController.text != "تعذيب" ||    searchTextController.text != "موت" ||    searchTextController.text != "قتل"
               ? Container(
                   width: double.infinity,
                   height: double.infinity,
@@ -165,8 +165,9 @@ class _SearchScreenState extends State<SearchScreen> {
                     ],
                   ),
                 )
-              : searchTextController.text == "انتحار"
-                  ? Column(
+              :   searchTextController.text == "انتحار" ||    searchTextController.text == "معاناة" ||    searchTextController.text == "تعذيب" ||    searchTextController.text == "موت" ||    searchTextController.text == "قتل"
+
+              ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
